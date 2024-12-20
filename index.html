@@ -1,0 +1,86 @@
+<html>
+<head>
+
+</head>
+<body>
+    <form>
+        <input type="text" name="fname" id="name" placeholder="Enter Name">
+        <input type="button" name="submit" onclick="getData()" value="Submit">
+    </form>
+    <div id="output"></div>
+    <select name="color" id="color" onchange="changeBG(this.value)">
+        <option>Select Color</option>
+        <option value="red">Red</option>
+        <option value="blue">Red</option>
+    </select>
+    <fieldset><legend>Calculator</legend>
+        <form>
+            
+            <label>Enter First Number</label>
+            <input type="range" id="num1range" min="500" max="10000" value="500" onchange="getRangevalue(this.id, this.value)">
+            <input type="text" id="num1" value="500"><br><br>
+            
+            <label>Enter Second Number</label>
+            <input type="range" id="num2range" min="500" max="10000" onchange="getRangevalue(this.id, this.value)">
+            <input type="text" id="num2"><br><br>
+            <input type="button" id="sum" value="+" onclick="calculator(this.value)">
+            <input type="button" id="minus" value="-" onclick="calculator(this.value)">
+            <input type="button" id="multiple" value="*" onclick="calculator(this.value)">
+            <input type="button" id="div" value="/" onclick="calculator(this.value)">
+        </form>
+        <h3 id="result"></h3>
+        <input id="username" onkeyup="keyPressOpr(this)">
+        <input id="username1" onkeydown="keyPressOpr(this)">
+        <input id="username2" onkeypress="keyPressOpr(this)">
+    </fieldset>
+<script>
+    document.querySelector("body").addEventListener("keydown", function(event) {
+        console.log("A key was pressed", event);
+        });
+    function keyPressOpr(val){
+        console.log(val)
+    }
+    function getRangevalue(id , val){
+        if(id == "num1range"){
+            document.getElementById("num1").value = val;
+        } else {
+            document.getElementById("num2").value = val;
+        }
+        
+    }
+    function calculator(opr){
+        var num1 = Number(document.getElementById("num1").value);
+        var num2 = Number(document.getElementById("num2").value);
+        var result;
+        if(opr == "+"){
+            result = num1 + num2;
+        } else if(opr == "-") {
+            result = num1 - num2;
+        } else if(opr == "*") {
+            result = num1 * num2;
+        } else if(opr == "/") {
+            result = num1 / num2;
+        } else {
+            result = "Operator Not Found";
+        }
+        document.getElementById("result").innerHTML = result;
+    }
+
+
+
+
+function changeBG(color){
+  document.body.style.backgroundColor = color;
+}
+function getData(){
+ var name = document.getElementById("name").value;
+ name = "Welcome, <h2>"+name+"</h2>";
+ if(name ==""){
+    alert("Enter Name");
+    return true;
+ }
+ //document.write("Welcome," + name)
+ document.getElementById("output").innerHTML= name;
+}
+</script>
+</body>
